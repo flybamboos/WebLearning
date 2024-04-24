@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 缺点 对于对象 数组等需要进行遍历进行绑定 无法监听新增属性 删除属性 通过数组下标变化 且每个属性都创建了setter getter数据量大时性能很差
+       let person = {
+        name:'123',
+        age:'18'
+       }
+       let person1 = {}
+       Object.keys(person).forEach((key)=>{
+        Object.defineProperty(person,key,{
+            set:function(value){
+                person1[key] = value
+            },
+            get:function(){
+                return person[key]
+            }
+        })
+       })
+       
+    </script>
+</body>
+</html>

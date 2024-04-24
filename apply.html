@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var name = '000'
+        // let aa = {
+        //     name :'aaa',
+        //     sayName:function(){
+        //         console.log(this.name)
+        //     }
+        // }
+        // Function.prototype.myApply =function(context) {
+        //     if(typeof this != 'function'){
+        //         throw new Error('error')
+        //     }
+        //     context = context || window
+        //     context.fn = this
+        //     let ar
+        //     if(arguments[1]){
+        //         ar = context.fn(...arguments[1])
+        //     }else{
+        //         ar = context.fn()
+        //     }
+        //     return ar
+        // }
+        // Function.prototype.myCall = function(context){
+        //     if(typeof this != 'function'){
+        //         throw new Error('error')
+        //     }
+        //     context = context || window
+        //     let fa = [...arguments].slice(1)
+        //     context.fn = this 
+        //     return context.fn(...fa)
+        // }
+        // let bb = {name:'2222'}
+        // let cc = {name:'3333'}
+        // // aa.sayName.myApply(cc)
+        // let a1 = {
+        //     sayName:function(name){
+        //         console.log(name)
+        //     }
+        // }
+        // a1.sayName.myApply(null,['name'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Function.prototype.myCall = function(context){
+            if(typeof this != 'function'){
+                throw new Error('error')
+            }
+            context = context || window
+            let fa = [...arguments].slice(1)
+            context.fn = this
+            let result = context.fn(fa)
+            delete context.fn
+            return result
+        }
+        Function.prototype.myApply = function(context){
+            if(typeof this != 'function'){
+                throw new Error('error')
+            }
+            context.fn = this
+            let result
+            if(arguments[1]){
+                result = context.fn(...arguments[1])
+            }else{
+                result = context.fn(...arguments[1])
+            }
+            return result
+        }
+    </script>
+</body>
+</html>
