@@ -8,67 +8,67 @@
 <body>
     <script>
         // 原型链继承 父函数改变子类也会改变
-        // function parent(){
-        //     this.name='111'
-        //     this.sayName = function(){
-        //     console.log(this.name)
-        // }
-        // }
-        // function child(){
-        //     this.name='222'
-        // }
-        // child.prototype = new parent()
+        function parent(){
+            this.name='111'
+            this.sayName = function(){
+            console.log(this.name)
+        }
+        }
+        function child(){
+            this.name='222'
+        }
+        child.prototype = new parent()
 
-        // let ch = new child
-        // console.log(ch)
-        // ch.sayName()
+        let ch = new child
+        console.log(ch)
+        ch.sayName()
 
 
         // 构造函数继承 无法继承原型上面的方法
-        //  function parent(name){
-        //     this.name=name
-        // }
-        // parent.prototype.sayName = function(){
-        //     console.log(this.name)
-        // }
-        // function child(name){
-        //     parent.call(this,name)
-        // }
-        // let ch = new child('1111')
-        // console.log(ch)
-        // ch.sayName()//报错无法继承父类上面的方法
+         function parent(name){
+            this.name=name
+        }
+        parent.prototype.sayName = function(){
+            console.log(this.name)
+        }
+        function child(name){
+            parent.call(this,name)
+        }
+        let ch = new child('1111')
+        console.log(ch)
+        ch.sayName()//报错无法继承父类上面的方法
 
         // 组合式继承 //调用两次父类构造方法，影响性能
-        //  function parent(name){
-        //     this.name=name
-        // }
-        // parent.prototype.sayName = function(){
-        //     console.log(this.name)
-        // }
-        // function child(name){
-        //     parent.call(this,name)
-        // }
-        // child.prototype = new parent()
-        // let ch = new child('1111')
-        // console.log(ch)
-        // ch.sayName()
+         function parent(name){
+            this.name=name
+        }
+        parent.prototype.sayName = function(){
+            console.log(this.name)
+        }
+        function child(name){
+            parent.call(this,name)
+        }
+        child.prototype = new parent()
+        let ch = new child('1111')
+        console.log(ch)
+        ch.sayName()
 
 
         // // 寄生组合式继承 避免了调用两次构造函数，且子类新增不会影响父类
-        //   function parent(name){
-        //     this.name=name
-        // };
-        // parent.prototype.sayName = function(){
-        //     console.log(this.name)
-        // };
-        // function child(name){
-        //     parent.call(this,name)
-        // };
-        // child.prototype = Object.create(parent.prototype);//重点，单独开辟
-        // child.prototype.constructor = child
-        // let ch = new child('1111')
-        // console.log(ch)
-        // ch.sayName()
+          function parent(name){
+            this.name=name
+        };
+        parent.prototype.sayName = function(){
+            console.log(this.name)
+        };
+        function child(name){
+            parent.call(this,name)
+        };
+        child.prototype = Object.create(parent.prototype);//重点，单独开辟
+        child.prototype.constructor = child
+        let ch = new child('1111')
+        console.log(ch)
+        ch.sayName()
         
         // es6 引入了类的概念 拓展 js类的实现原理
         class Parent {
